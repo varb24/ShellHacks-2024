@@ -30,9 +30,6 @@ class OpenAIClient:
 # Usage
 client = OpenAIClient(openai_api_key)
 
-response = client.generate_completion("Once upon a time,")
-print(response)
-
 # response = client.generate_completion("Once upon a time,")
 # print(response)
 
