@@ -20,7 +20,7 @@ class OpenAIClient:
                 model=model
             )
             # Return the content of the response and the request ID
-            print(response)
+            # print(response)
             return {
                 "content": response.choices[0].message.content.strip(),
             }
@@ -30,5 +30,11 @@ class OpenAIClient:
 # Usage
 client = OpenAIClient(openai_api_key)
 
+<<<<<<< Updated upstream
 response = client.generate_completion("Once upon a time,")
 print(response)
+=======
+# response = client.generate_completion("Once upon a time,")
+# print(response)
+
+>>>>>>> Stashed changes
