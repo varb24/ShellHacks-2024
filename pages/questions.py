@@ -23,6 +23,12 @@ with st.form("defined_questions", clear_on_submit=True):
     # Slider input for age
     age = st.slider("How old are you?", min_value=16)
 
+    # Slider input for Dependents
+    dependents = st.slider("How many people are dependent of you?", max_value=20)
+
+    # Dropdown for ethnicity options
+    ethnicity = st.selectbox("What ethnicity do you identify as?", ["Black", "White", "Hispanic/Latino", "Native American", "Pacific Islander", "Asian American"])
+
     # HTML to style the question text
     where_loc = '<p style="font-size:14px;">Where are you located?</p>'
     st.markdown(where_loc, unsafe_allow_html=True)
