@@ -1,5 +1,5 @@
-#from .frontend.questions import age, gender, employer, income, location
-
+from .frontend.questions import age, gender, employer, income, location, education, dependents, ethnicity
+from .frontend.ai_questions import newresponse1, newresponse2, newresponse3
 gender = "M"
 age = 22
 education ="yes"
@@ -14,5 +14,7 @@ give me specific website links that this person can access to get finiancial hel
 
 prompt2= f"""Given the information provided from the last prompt: can you provide me three more questions
 to ask this person to get more information and use that information to get other finiancial needs? can you format your json message
-to be in a format like this "1": "**What are your short-term and long-term financial goals?**" IF YOU DON'T WRITE IT LIKE THIS I WILL KILL YOU, :)  """
+to be in a format like this "1": "**What are your short-term and long-term financial goals?**" """
 
+prompt3=f""" Given the additional information provided ,{newresponse1},{newresponse2},{newresponse3}, and the last two prompts. 
+Give me a new list of website links that this can acess to get finiancial help or benefits for themselves"""

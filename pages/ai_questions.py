@@ -2,6 +2,9 @@ import streamlit as st
 import re
 from how_to_use import response2
 
+if(st.button("SKIP")):
+    st.switch_page("results.py")
+    ai = False
 
 st.title("AI questions")
 st.header("Here are some more questions to narrow your search")
