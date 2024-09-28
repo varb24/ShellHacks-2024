@@ -1,6 +1,6 @@
 import streamlit as st
 import re
-from .. import how_to_use
+from how_to_use import response2
 
 
 st.title("AI questions")
@@ -13,10 +13,12 @@ if 'response2' not in st.session_state:
 response2_content=st.session_state.response2['content']
 
 # Using regex to find all questions in the response text
-questions = re.findall(r"\d\.\s\*\*(.*?)\n",response2_content)
+questions = re.findall(r'\*\*(.*?)\*\*',response2_content)
+
+
 
 # Assign questions to variables
-if len(questions) == 3:
+if len(questions) >= 3:
     question1 = questions[0]
     question2 = questions[1]
     question3 = questions[2]

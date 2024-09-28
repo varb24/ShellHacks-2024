@@ -12,7 +12,7 @@ class OpenAIClient:
         # Initialize the OpenAI client with the provided API key
         self.client = OpenAI(api_key=api_key)
 
-    def generate_completion(self, prompt: str, model="gpt-4o-mini"):
+    def generate_completion(self, prompt: str, model="gpt-4o"):
         try:
             # Send the request to the chat completion API
             response = self.client.chat.completions.create(
@@ -20,7 +20,7 @@ class OpenAIClient:
                 model=model
             )
             # Return the content of the response and the request ID
-            # print(response)
+            #print(response)
             return {
                 "content": response.choices[0].message.content.strip(),
             }
