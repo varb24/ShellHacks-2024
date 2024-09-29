@@ -19,5 +19,5 @@ if 'AI_questions' in st.session_state:
     print(st.session_state['final_answers'])
 
 if st.button("Next"):
-    print(f'printing recs {create_recommendations(st.session_state["final_answers"])}')
+    st.session_state['final_recs'] = create_recommendations(st.session_state["final_answers"])
     st.switch_page("pages/results.py")

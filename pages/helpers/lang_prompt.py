@@ -3,9 +3,11 @@ from langchain_core.output_parsers import JsonOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.pydantic_v1 import BaseModel, Field
 import json
+import os
 
-# Model setup
-model = ChatOpenAI(model="gpt-4o")
+openai_api_key = os.getenv('OPENAI_KEY')
+
+model = ChatOpenAI(model="gpt-4o",openai_api_key=openai_api_key)
 
 # Pydantic model for questions
 class Questions(BaseModel):

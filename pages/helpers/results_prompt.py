@@ -22,8 +22,8 @@ class Recommendations(BaseModel):
 # Example recommendations
 recommendations_example = {
     'recommendations': [
-        {'name': {'link': 'http://example.com', 'description': 'A great resource.', 'rationale': 'Proven useful for many users of the same age.'}},
-        {'name': {'link': 'http://anotherexample.com', 'description': 'Another great resource.', 'rationale': 'Better than the first in some cases.'}}
+        {'name_of_the_service': {'link': 'http://example.com', 'description': 'A great resource.', 'rationale': 'Proven useful for many users of the same age.'}},
+        {'name_of_the_service': {'link': 'http://anotherexample.com', 'description': 'Another great resource.', 'rationale': 'Better than the first in some cases.'}}
     ]
 }
 
@@ -31,15 +31,17 @@ parser = JsonOutputParser(pydantic_object=Recommendations)
 
 system_template = """
 You are an agent who is trying to help a person find financial assistance, your role is that of a social worker.
+You are allowed to use the internet to generate more localized results.
 Take the information given by the user and create recommendations which will help the user's financial or social situation. 
 Example: {{
     'recommendations': [
-        {{'name': {{'link': 'http://example.com', 'description': 'A great resource.', 'rationale':'it has proven useful for many users of the same age'}}}},
-        {{'name': {{'link': 'http://anotherexample.com', 'description': 'Another great resource.', 'rationale':'This is like example, but better'}}}}
+        {{'name_of_the_service': {{'link': 'http://example.com', 'description': 'A great resource.', 'rationale':'it has proven useful for many users of the same age'}}}},
+        {{'name_of_the_service': {{'link': 'http://anotherexample.com', 'description': 'Another great resource.', 'rationale':'This is like example, but better'}}}}
     ]
 }}
+name_of_the_service should be the key using the name of the service being recommended.
 If a recommendation does not have a 'link', add instructions on how to access the resource.
-Return the results as a valid JSON object.
+Return the results as a valid JSON object with 'recommendations' as the head key.
 """
 
 filter_template = """
@@ -51,12 +53,13 @@ Evaluate each recommendation with the following criteria:
 
 Example: {{
     'recommendations': [
-        {{'name': {{'link': 'http://example.com', 'description': 'A great resource.', 'rationale':'it has proven useful for many users of the same age'}}}},
-        {{'name': {{'link': 'http://anotherexample.com', 'description': 'Another great resource.', 'rationale':'This is like example, but better'}}}}
+        {{'name_of_the_service': {{'link': 'http://example.com', 'description': 'A great resource.', 'rationale':'it has proven useful for many users of the same age'}}}},
+        {{'name_of_the_service': {{'link': 'http://anotherexample.com', 'description': 'Another great resource.', 'rationale':'This is like example, but better'}}}}
     ]
 }}
+name_of_the_service should be the key using the name of the service being recommended.
 Do not alter any of the information on the list, except for the rationale.
-Return the results as a valid JSON object.
+Return the results as a valid JSON object with 'recommendations' as the head key.
 """
 
 
@@ -80,7 +83,6 @@ def create_recommendations(profile_input):
     try:
         # Step 1: Generate recommendations based on the profile input
         print(chain_generate, profile_input)
-        time.sleep(10)
         result = chain_generate.invoke(profile_input)
         print("Generated Recommendations:", result)
 

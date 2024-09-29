@@ -54,7 +54,7 @@ with st.form("defined_questions", clear_on_submit=True):
     # Form submission button, when pressed it triggers the form to submit the inputs
     if st.form_submit_button("Next"):
         # Display a warning message while loading (simulated with sleep)
-        st.warning("Loading Answers and Generating Further Questions")
+
         profile_input = {
             "profile_input": {
                 "age": age,
@@ -66,13 +66,14 @@ with st.form("defined_questions", clear_on_submit=True):
                 "ethnicity": ethnicity
             }
         }
-
-        AI_questions = create_questions(profile_input)
+        #st.warning("Loading Answers and Generating Further Questions")
+        with st.spinner("Loading data from OpenAI..."):
+            AI_questions = create_questions(profile_input)
         st.session_state['profile'] = profile_input
         st.session_state['AI_questions'] = AI_questions
         # Code to show that 
         #st.markdown(f"This is what you inputted: {gender}, {age}, {location}, {employer}, {income}, {education}")
-
+        st.warning("Loading Answers and Generating Further Questions")
         # Simulate a loading delay
 
         st.switch_page("pages/ai_questions.py")

@@ -11,7 +11,7 @@ class OpenAIClient:
     def __init__(self, api_key: str):
         # Initialize the OpenAI client with the provided API key
         self.client = OpenAI(api_key=api_key)
-
+        print(api_key)
     def generate_completion(self, prompt: str, model="gpt-4o"):
         try:
             # Send the request to the chat completion API
