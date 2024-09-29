@@ -47,11 +47,6 @@ st.markdown(
         margin-top: 100px;
         font-style: italic;
     }
-    .button-container {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 30px;
-    }
     </style>
     """, unsafe_allow_html=True
 )
@@ -64,10 +59,8 @@ st.markdown('<div class="header">Providing help for all who need</div>', unsafe_
 st.markdown('<div class="description">We believe in an inclusive approach to offering aid to everyone in need, regardless of background or location. Please click the button below to begin your journey with us.</div>', unsafe_allow_html=True)
 
 # Centering the button using a div with flexbox
-st.markdown('<div class="button-container">', unsafe_allow_html = True)
 if st.button("Begin", use_container_width = True):
     st.switch_page("pages/questions.py")
-st.markdown('</div>', unsafe_allow_html = True)
 
 with st.container(border= True):
     st.markdown('<div class="title">Helpful Resources</div>', unsafe_allow_html=True)

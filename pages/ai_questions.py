@@ -36,7 +36,7 @@ newresponse3 = st.text_area(label=question3)
 
 if st.button("Next"):
     if newresponse1 and newresponse2 and newresponse3:
-        st.switch_page("results.py")
+        st.switch_page("pages/results.py")
    
     else:
         st.warning("Please answer all questions before submitting.")
