@@ -1,0 +1,88 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-09-29 00:39-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: pages/main_page.py:5
+msgid "Please Select Your Language"
+msgstr "Por favor, seleccione su idioma"
+
+#: pages/main_page.py:48
+msgid "Welcome to Inclusive Aid"
+msgstr "Bienvenidos a la Ayuda Inclusiva"
+
+#: pages/main_page.py:49
+msgid "Our mission is to provide help to everyone, regardless of background."
+msgstr "Nuestra misión es brindar ayuda a todos, independientemente de su origen."
+
+#: pages/main_page.py:54
+msgid ""
+"We believe in an inclusive approach to offering aid to everyone in need, "
+"regardless of background or location. Please click the button below to begin "
+"your journey with us."
+msgstr ""
+"Creemos en un enfoque inclusivo para ofrecer ayuda a todas las personas necesitadas, "
+"independientemente de su origen o ubicación. Haga clic en el botón de abajo para comenzar "
+"su viaje con nosotros."
+
+#: pages/main_page.py:58
+msgid "Begin"
+msgstr "Empezar"
+
+#: pages/main_page.py:62
+msgid "Helpful Resources"
+msgstr "Recursos útiles"
+
+#: pages/main_page.py:66
+msgid "Explore these resources for further assistance: "
+msgstr "Explore estos recursos para obtener más ayuda:"
+
+#: pages/main_page.py:85
+msgid ""
+"Get information on benefits and services provided by the U.S. Government."
+msgstr ""
+"Obtenga información sobre los beneficios y servicios proporcionados por el gobierno de los EE. UU."
+
+#: pages/main_page.py:86
+msgid "Visit USA.GOV"
+msgstr "Visita USA.GOV"
+
+#: pages/main_page.py:91
+msgid "Treasury Assistance"
+msgstr "Asistencia de Tesorería"
+
+#: pages/main_page.py:92
+msgid "Explore policies and assistance for American families and workers."
+msgstr "Explore las políticas y la asistencia para las familias y los trabajadores estadounidenses."
+
+#: pages/main_page.py:93
+msgid "Visit Treasury Assistance"
+msgstr "Visite Asistencia de Tesorería"
+
+#: pages/main_page.py:98
+msgid ""
+"Find local resources and help for food, housing, medical care, and more."
+msgstr ""
+"Encuentre recursos locales y ayuda para alimentos, vivienda, atención médica y más."
+
+#: pages/main_page.py:99
+msgid "Visit FindHelp.org"
+msgstr "Visita FindHelp.org"
+
+#: pages/main_page.py:102
+msgid "Empowering communities, one person at a time."
+msgstr "Empoderando a las comunidades, una persona a la vez."

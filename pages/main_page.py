@@ -1,16 +1,10 @@
-"""
 import streamlit as st
+from nav import lang_setup
 
-st.title("Inclusive Aid")
-st.header("Providing help for all who need")
+st.set_page_config(page_title="Inclusive Aid", page_icon="::man-woman-girl-boy:", layout="centered")
 
-st.markdown("Please click the button below to begin")
+_ = lang_setup()
 
-if st.button("Begin"):
-    st.switch_page("questions.py")
-"""
-import streamlit as st
- 
 # Apply some custom CSS for styling
 st.markdown(
     """
@@ -52,21 +46,26 @@ st.markdown(
 )
 
 # Title and Header with custom styling
-st.markdown('<div class="title">Inclusive Aid</div>', unsafe_allow_html = True)
-st.markdown('<div class="header">Providing help for all who need</div>', unsafe_allow_html = True)
+intro_html = '<div class="title">{}</div>'.format(_("Welcome to Inclusive Aid"))
+mission_html = '<div class="header">{}</div>'.format(_("Our mission is to provide help to everyone, regardless of background."))
+st.markdown(intro_html, unsafe_allow_html=True)
+st.markdown(mission_html, unsafe_allow_html=True)
 
 # Introduction or description section
-st.markdown('<div class="description">We believe in an inclusive approach to offering aid to everyone in need, regardless of background or location. Please click the button below to begin your journey with us.</div>', unsafe_allow_html=True)
+desc_html = '<div class="description">{}</div>'.format(_("We believe in an inclusive approach to offering aid to everyone in need, regardless of background or location. Please click the button below to begin your journey with us."))
+st.markdown(desc_html, unsafe_allow_html=True)
 
 # Centering the button using a div with flexbox
-if st.button("Begin", use_container_width = True):
+if st.button(_("Begin"), use_container_width = True):
     st.switch_page("pages/questions.py")
 
 with st.container(border= True):
-    st.markdown('<div class="title">Helpful Resources</div>', unsafe_allow_html=True)
+    help_html = '<div class="title">{}</div>'.format(_("Helpful Resources"))
+    st.markdown(help_html, unsafe_allow_html=True)
 
     # Instructional header
-    st.markdown('<div class="subheader">Explore these resources for further assistance:</div>', unsafe_allow_html = True)
+    help_instruc_html = '<div class="subheader">{}</div>'.format(_("Explore these resources for further assistance: "))
+    st.markdown(help_instruc_html, unsafe_allow_html = True)
     st.divider()
 
     # Create columns for the cards
@@ -84,21 +83,22 @@ with st.container(border= True):
     # Second card: USA.GOV
     with col2:
         st.subheader("USA.GOV")
-        st.markdown("Get information on benefits and services provided by the U.S. Government.")
-        st.link_button("Visit USA.GOV", "https://www.usa.gov/benefits")
+        st.markdown(_("Get information on benefits and services provided by the U.S. Government."))
+        st.link_button(_("Visit USA.GOV"), "https://www.usa.gov/benefits")
         
 
     # Third card: Treasury Assisstance
     with col3:
-        st.subheader("Treasury Assistance")
-        st.markdown("Explore policies and assistance for American families and workers.")
-        st.link_button("Visit Treasury Assistance", "https://home.treasury.gov/policy-issues/coronavirus/assistance-for-American-families-and-workers")
+        st.subheader(_("Treasury Assistance"))
+        st.markdown(_("Explore policies and assistance for American families and workers."))
+        st.link_button(_("Visit Treasury Assistance"), "https://home.treasury.gov/policy-issues/coronavirus/assistance-for-American-families-and-workers")
 
     # Fourth card: FindHelp
     with col4:
         st.subheader("FindHelp.org")
-        st.markdown("Find local resources and help for food, housing, medical care, and more.")
-        st.link_button("Visit FindHelp.org", "https://www.findhelp.org")
+        st.markdown(_("Find local resources and help for food, housing, medical care, and more."))
+        st.link_button(_("Visit FindHelp.org"), "https://www.findhelp.org")
 
 # Footer section
-st.markdown('<div class="footer">"Empowering communities, one person at a time."</div>', unsafe_allow_html=True)
+foot_html = '<div class="footer">{}</div>'.format(_("Empowering communities, one person at a time."))
+st.markdown(foot_html, unsafe_allow_html=True)

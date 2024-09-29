@@ -1,4 +1,6 @@
 import streamlit as st
+from nav import lang_setup
+_ = lang_setup()
 
 # Apply some custom CSS for styling
 st.markdown(
