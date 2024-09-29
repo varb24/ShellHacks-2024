@@ -1,19 +1,20 @@
 import streamlit as st
-import time
 import json
+from nav import lang_setup
+_ = lang_setup()
 
 with open('./all_countries.json', 'r') as f:
     all_countries = json.load(f)
 
-st.header("Let us ask you a few questions")
+st.header(_("Let us ask you a few questions"))
 
 # Gender selection outside of the form to enable real-time updates
-gender_options = ["Male", "Female", "Other"]
-gender = st.selectbox("What is your gender?", gender_options)
+gender_options = [_("Male"), _("Female"), _("Other")]
+gender = st.selectbox(_("What is your gender?"), gender_options)
 
 # Conditionally display the other gender input based on real-time selection
 if gender == "Other":
-    other_gender = st.text_input("Please specify your gender")
+    other_gender = st.text_input(_("Please specify your gender"))
 else:
     other_gender = None  # Set to None if not applicable
 
@@ -21,38 +22,43 @@ else:
 with st.form("defined_questions", clear_on_submit=True):
 
     # Slider input for age
-    age = st.slider("How old are you?", min_value=16)
+    age = st.slider(_("How old are you?"), min_value=16)
 
     # Slider input for Dependents
-    dependents = st.slider("How many people are dependent of you?", max_value=20)
+    dependents = st.slider(_("How many people are dependent of you?"), max_value=20)
 
     # Dropdown for ethnicity options
-    ethnicity = st.selectbox("What ethnicity do you identify as?", ["Black", "White", "Hispanic/Latino", "Native American", "Pacific Islander", "Asian American"])
+    ethnicity = st.selectbox(_("What ethnicity do you identify as?"), [_("Black"), _("White"), _("Hispanic/Latino"), _("Native American"), _("Pacific Islander"), _("Asian American")])
 
     # HTML to style the question text
-    where_loc = '<p style="font-size:14px;">Where are you located?</p>'
+    where_loc = '<p style="font-size:14px;">{}</p>'.format(_("Where are you located?"))
     st.markdown(where_loc, unsafe_allow_html=True)
 
     # location details (street address, city, state/province, country)
-    st_address = st.text_input("Street Address")
-    city = st.text_input("City")
-    state_or_province = st.text_input("State/Province")
-    country = st.selectbox("Country", all_countries)
+    st_address = st.text_input(_("Street Address"))
+    city = st.text_input(_("City"))
+    state_or_province = st.text_input(_("State/Province"))
+
+    # Translate each country name in the list using gettext
+    translated_countries = [_(country) for country in all_countries]
+
+    # Display the translated list of countries in a select box
+    country = st.selectbox(_("Country"), translated_countries)
 
     # Combine the location inputs
     location = f"{st_address}, {city}, {state_or_province}, {country}"
 
     # Text input for employer details
-    employer = st.text_input("Who is your current employer? (If not employed, please write 'Not Employed')")
+    employer = st.text_input(_("Who is your current employer? (If not employed, please write 'Not Employed')"))
 
     # Text input for income
-    income = st.text_input("How much money do you make yearly? (If unknown, provide an estimate)")
+    income = st.text_input(_("How much money do you make yearly? (If unknown, provide an estimate)"))
 
     # Dropdown input for selecting if the user is pursuing higher education
-    education = st.selectbox("Are you pursuing Higher Education?", ["Yes", "No"])
+    education = st.selectbox(_("Are you pursuing Higher Education?"), [_("Yes"), _("No")])
 
     # Form submission button, when pressed it triggers the form to submit the inputs
-    if st.form_submit_button("Next"):
+    if st.form_submit_button(_("Next")):
         # Display a warning message while loading (simulated with sleep)
         st.warning("Loading Answers and Generating Further Questions")
         

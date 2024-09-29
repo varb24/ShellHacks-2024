@@ -1,6 +1,8 @@
 import streamlit as st
 import re
 from how_to_use import response2
+from nav import lang_setup
+_ = lang_setup()
 
 
 st.title("AI questions")
