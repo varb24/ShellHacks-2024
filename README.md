@@ -6,19 +6,21 @@ Inclusive Aid is a Streamlit-based application that provides resources and assis
 
 ## Features
 - Interactive questions to gather user information and provide tailored results.
+- Translate the main page and questions for users that does not know english (Work in Progress)
+- AI image generation for the results (Work in Progress)
 - AI-powered follow-up questions to refine the user’s needs.
 - Dynamic insights based on user input.
 - Links to external resources such as OpenAI API, Streamlit Docs, and LangGraph Documentation.
 
 ## Installation
 To install the required dependencies, run:
-```bash
+```
 pip install -r requirements.txt
 ```
 
 ## Usage
 To run the application, use the following command:
-```bash
+```
 streamlit run nav.py
 ```
 
@@ -29,17 +31,39 @@ streamlit run nav.py
 - **Results Page**: Displays insights based on the answers provided.
 
 ## File Structure
+## File Structure
+
 ```
 .
-├── pages/
-│   ├── main_page.py        # Main landing page
-│   ├── questions.py        # Page for demographic and location questions
-│   ├── ai_questions.py     # Page for AI-generated follow-up questions
-│   ├── results.py          # Page showing tailored insights
-├── openAI_client.py        # OpenAI client for generating AI responses
-├── lang_prompt.py          # Example using Langchain for language models
-└── requirements.txt        # List of required dependencies
-```
+├── locales
+│   ├── en
+│   ├── es
+│   ├── main_page.pot                           # Translation template for main page in different languages
+│   └── questions.pot                           # Translation template for question-related content
+├── pages
+│   ├── ...                                     # Cache of compiled Python files
+│   ├── helpers
+│   │   ├── ...                                 # Cache of compiled Python files for helpers
+│   │   ├── __init__.py                         # Initializes the 'helpers' package
+│   │   ├── lang_prompt.py                      # Helper functions for handling language prompts
+│   │   ├── results_prompt.py                   # Helper functions for managing results prompts
+│   │   └── __init__.py                         # Initializes the 'helpers' sub-package
+│   ├── __init__.py                             # Initializes the 'pages' package
+│   ├── ai_questions.py                         # Handles AI-related questions logic
+│   ├── main_page.py                            # Main page functionality and logic
+│   ├── questions.py                            # General question-related logic
+│   └── results.py                              # Logic for managing and displaying results
+├── .env                                        # Environment variables for the project
+├── .gitignore                                  # Specifies files and directories to be ignored by Git
+├── all_countries.json                          # Data file containing information about countries
+├── general_prompts.py                          # General prompts logic used across the application
+├── how_to_use.py                               # Instructions or logic for user guidance
+├── lang_prompt.py                              # Manages language-specific prompts (possibly reused by multiple components)
+├── nav.py                                      # Handles navigation logic within the application
+├── openAI_client.py                            # Manages interaction with OpenAI's API
+├── README.md                                   # Project overview and documentation
+└── requirements.txt                            # List of required Python packages and dependencies
+
 
 ## External Resources
 - [OpenAI API](https://beta.openai.com/docs/)
