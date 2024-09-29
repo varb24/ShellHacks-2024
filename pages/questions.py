@@ -33,13 +33,14 @@ with st.form("defined_questions", clear_on_submit=True):
     where_loc = '<p style="font-size:14px;">Where are you located?</p>'
     st.markdown(where_loc, unsafe_allow_html=True)
 
-    # location details (city, state/province, country)
+    # location details (street address, city, state/province, country)
+    st_address = st.text_input("Street Address")
     city = st.text_input("City")
     state_or_province = st.text_input("State/Province")
     country = st.selectbox("Country", all_countries)
 
     # Combine the location inputs
-    location = f"{city}, {state_or_province}, {country}"
+    location = f"{st_address}, {city}, {state_or_province}, {country}"
 
     # Text input for employer details
     employer = st.text_input("Who is your current employer? (If not employed, please write 'Not Employed')")
@@ -55,10 +56,4 @@ with st.form("defined_questions", clear_on_submit=True):
         # Display a warning message while loading (simulated with sleep)
         st.warning("Loading Answers and Generating Further Questions")
         
-        # Code to show that 
-        #st.markdown(f"This is what you inputted: {gender}, {age}, {location}, {employer}, {income}, {education}")
-
-        # Simulate a loading delay
-        time.sleep(10)
-
         st.switch_page("pages/ai_questions.py")
