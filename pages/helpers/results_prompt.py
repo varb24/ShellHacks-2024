@@ -19,14 +19,6 @@ class Recommendations(BaseModel):
         description="List of recommendations with name, link, description, and rationale"
     )
 
-# Example recommendations
-recommendations_example = {
-    'recommendations': [
-        {'name_of_the_service': {'link': 'http://example.com', 'description': 'A great resource.', 'rationale': 'Proven useful for many users of the same age.'}},
-        {'name_of_the_service': {'link': 'http://anotherexample.com', 'description': 'Another great resource.', 'rationale': 'Better than the first in some cases.'}}
-    ]
-}
-
 parser = JsonOutputParser(pydantic_object=Recommendations)
 
 system_template = """
@@ -62,7 +54,6 @@ Do not alter any of the information on the list, except for the rationale.
 Return the results as a valid JSON object with 'recommendations' as the head key.
 """
 
-
 # Set up prompts
 prompt_template = ChatPromptTemplate.from_messages(
     [("system", system_template), ("user", "{profile_input}")]
@@ -78,30 +69,44 @@ chain_generate = prompt_template | model | parser
 # Chain setup for filtering top 3 recommendations
 chain_filter = filter_prompt_template | model | parser
 
-# Run the chain and handle errors
+# Retry configuration
+RETRY_LIMIT = 3
+RETRY_DELAY = 2  # Seconds to wait between retries
+
+# Run the chain and handle errors with retries
 def create_recommendations(profile_input):
-    try:
-        # Step 1: Generate recommendations based on the profile input
-        print(chain_generate, profile_input)
-        result = chain_generate.invoke(profile_input)
-        print("Generated Recommendations:", result)
+    for attempt in range(RETRY_LIMIT):
+        try:
+            #First pass with recs
+            print(f"Attempt {attempt + 1}: Generating recommendations...")
+            result = chain_generate.invoke(profile_input)
+            print("Generated Recommendations:", result)
 
-        # Ensure that recommendations exist in the result
-        if "recommendations" not in result:
-            raise ValueError("No recommendations found in the generated result")
+            # Ensure that recommendations exist in the result
+            if "recommendations" not in result:
+                raise ValueError("No recommendations found in the generated result")
+            
+            # Second pass to select the best recs
+            filter_result = chain_filter.invoke({"recommendations": result["recommendations"]})
+            print("Filtered Recommendations:", filter_result)
+            
+            if "recommendations" not in result:
+                raise ValueError("No recommendations found in the generated result")
+            
+            return filter_result
 
-        # Step 2: Filter the recommendations
-        filter_result = chain_filter.invoke({"recommendations": result["recommendations"]})
-        print("Filtered Recommendations:", filter_result)
+        except json.JSONDecodeError as e:
+            print(f"Attempt {attempt + 1}: JSON decoding error: {e}")
+        except ValueError as e:
+            print(f"Attempt {attempt + 1}: Error: {e}")
+        except Exception as e:
+            print(f"Attempt {attempt + 1}: Unexpected error: {e}")
 
-        return filter_result
+        # Retry delay
+        time.sleep(RETRY_DELAY)
 
-    except json.JSONDecodeError as e:
-        print(f"JSON decoding error: {e}")
-        return None
-    except Exception as e:
-        print(f"Error: {e}")
-        return None
+    print("Failed to generate and filter recommendations after several attempts.")
+    return None
 
 # Example profile input
 profile_input = {
@@ -118,4 +123,4 @@ profile_input = {
 }
 
 # Call the function
-create_recommendations(profile_input)
+# create_recommendations(profile_input)

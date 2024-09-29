@@ -2,7 +2,7 @@ import streamlit as st
 from pages.helpers.create_image import generate_image 
 from openAI_client import client
 
-# Fill the three recs we will use
+
 rec1 = st.session_state['final_recs']['recommendations'][0]
 rec2 = st.session_state['final_recs']['recommendations'][1]
 rec3 = st.session_state['final_recs']['recommendations'][2]
@@ -11,7 +11,7 @@ rec3 = st.session_state['final_recs']['recommendations'][2]
 rec_list = [rec1, rec2, rec3]
 
 # Debugging: Print the structure of rec_list to see what it looks like
-st.write("Rec list structure:", rec_list)
+#st.write("Rec list structure:", rec_list)
 from nav import lang_setup
 _ = lang_setup()
 
@@ -71,15 +71,23 @@ for col, rec in results_columns:
         main_key = list(rec.keys())[0]  # Get the first key, which is the service name
         details = rec[main_key]  # Access the details dictionary for that service
         #image_url = generate_image(details.get('description', 'Generate placeholder'))
-        image_url = client.generate_completion(f'Search the given url for a picture which represents the company or webpage. Return ONLY the image url. Given Url: {details.get("link", "No link")}')
-        print(f'image url ---- {image_url}')
+        #image_url = client.generate_completion(f'Search the given url for a picture which represents the company or webpage. Return ONLY the image url. Given Url: {details.get("link", "No link")} / if you cannot search the web, return a placeholder image')
+        #print(f'image url ---- {image_url}')
+        #image_url = image_url['content']
         # Add check to ensure `details` is a dictionary
         if isinstance(details, dict):
             st.subheader(main_key)  # Service name
-            st.image(image_url, width=224)
+            #st.image(image_url, width=224)
             st.markdown(f"[Link to service]({details.get('link', 'No link available')})")  # Display the link as markdown
             st.markdown(f"**Description**: {details.get('description', 'No description available')}")  # Display the description
-            st.markdown(f"**Rationale**: {details.get('rationale', 'No rationale available')}")  # Display the rationale
+            try:
+                st.markdown(f"**Rationale**: {details.get('rationale', 'No rationale available')}")  # Display the rationale                
+            except Exception as e:
+                print("error--------")
+                rationale = list(details.get('rationale', 'No rationale available').values())
+                rationale_string = f"""{rationale[0]} , {rationale[1]}, {rationale[2], rationale[3]}  
+                """
+                st.markdown(f"**Rationale**: {details.get('rationale', 'No rationale available')}")  # Display the rationale
         else:
             st.write(f"Error: Expected dictionary for {main_key}, but got {type(details)}")
 
