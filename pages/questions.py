@@ -53,7 +53,7 @@ with st.form("defined_questions", clear_on_submit=True):
     employer = st.text_input(_("Who is your current employer? (If not employed, please write 'Not Employed')"))
 
     # Text input for income
-    income = st.text_input(_("How much money do you make yearly? (If unknown, provide an estimate)"))
+    income = st.text_input(_("How much money do you make yearly? (If unknown, provide an estimate. If unemployed, put '0')"))
 
     # Dropdown input for selecting if the user is pursuing higher education
     education = st.selectbox(_("Are you pursuing Higher Education?"), [_("Yes"), _("No")])
@@ -74,13 +74,13 @@ with st.form("defined_questions", clear_on_submit=True):
             }
         }
         #st.warning("Loading Answers and Generating Further Questions")
-        with st.spinner("Loading data from OpenAI..."):
+        with st.spinner("Loading Answers and Generating Further Questions..."):
             AI_questions = create_questions(profile_input)
         st.session_state['profile'] = profile_input
         st.session_state['AI_questions'] = AI_questions
         # Code to show that 
         #st.markdown(f"This is what you inputted: {gender}, {age}, {location}, {employer}, {income}, {education}")
-        st.warning("Loading Answers and Generating Further Questions")
+        #st.warning("Loading Answers and Generating Further Questions")
         # Simulate a loading delay
 
         st.switch_page("pages/ai_questions.py")
