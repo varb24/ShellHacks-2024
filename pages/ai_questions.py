@@ -1,5 +1,9 @@
 import streamlit as st
 import time
+import re
+from how_to_use import response2
+from nav import lang_setup
+_ = lang_setup()
 from pages.helpers.results_prompt import create_recommendations
 
 question_answers = {}

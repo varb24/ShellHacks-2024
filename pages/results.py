@@ -12,6 +12,8 @@ rec_list = [rec1, rec2, rec3]
 
 # Debugging: Print the structure of rec_list to see what it looks like
 st.write("Rec list structure:", rec_list)
+from nav import lang_setup
+_ = lang_setup()
 
 # Apply some custom CSS for styling
 st.markdown(
