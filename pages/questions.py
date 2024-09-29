@@ -2,6 +2,7 @@ import streamlit as st
 import json
 from nav import lang_setup
 _ = lang_setup()
+from pages.helpers.lang_prompt import create_questions
 
 with open('./all_countries.json', 'r') as f:
     all_countries = json.load(f)
@@ -61,5 +62,24 @@ with st.form("defined_questions", clear_on_submit=True):
     if st.form_submit_button(_("Next")):
         # Display a warning message while loading (simulated with sleep)
         st.warning("Loading Answers and Generating Further Questions")
-        
+        profile_input = {
+            "profile_input": {
+                "age": age,
+                "occupation": employer,
+                "education": education,
+                "income": income,
+                "location": location,
+                "dependents": dependents,
+                "ethnicity": ethnicity
+            }
+        }
+
+        AI_questions = create_questions(profile_input)
+        st.session_state['profile'] = profile_input
+        st.session_state['AI_questions'] = AI_questions
+        # Code to show that 
+        #st.markdown(f"This is what you inputted: {gender}, {age}, {location}, {employer}, {income}, {education}")
+
+        # Simulate a loading delay
+
         st.switch_page("pages/ai_questions.py")
