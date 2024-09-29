@@ -1,0 +1,123 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-09-29 00:58-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: pages/questions.py:9
+msgid "Let us ask you a few questions"
+msgstr ""
+
+#: pages/questions.py:12
+msgid "Male"
+msgstr ""
+
+#: pages/questions.py:12
+msgid "Female"
+msgstr ""
+
+#: pages/questions.py:12
+msgid "Other"
+msgstr ""
+
+#: pages/questions.py:13
+msgid "What is your gender?"
+msgstr ""
+
+#: pages/questions.py:17
+msgid "Please specify your gender"
+msgstr ""
+
+#: pages/questions.py:25
+msgid "How old are you?"
+msgstr ""
+
+#: pages/questions.py:28
+msgid "How many people are dependent of you?"
+msgstr ""
+
+#: pages/questions.py:31
+msgid "What ethnicity do you identify as?"
+msgstr ""
+
+#: pages/questions.py:31
+msgid "Black"
+msgstr ""
+
+#: pages/questions.py:31
+msgid "White"
+msgstr ""
+
+#: pages/questions.py:31
+msgid "Hispanic/Latino"
+msgstr ""
+
+#: pages/questions.py:31
+msgid "Native American"
+msgstr ""
+
+#: pages/questions.py:31
+msgid "Pacific Islander"
+msgstr ""
+
+#: pages/questions.py:31
+msgid "Asian American"
+msgstr ""
+
+#: pages/questions.py:34
+msgid "Where are you located?"
+msgstr ""
+
+#: pages/questions.py:38
+msgid "Street Address"
+msgstr ""
+
+#: pages/questions.py:39
+msgid "City"
+msgstr ""
+
+#: pages/questions.py:40
+msgid "State/Province"
+msgstr ""
+
+#: pages/questions.py:46
+msgid "Country"
+msgstr ""
+
+#: pages/questions.py:52
+msgid ""
+"Who is your current employer? (If not employed, please write 'Not Employed')"
+msgstr ""
+
+#: pages/questions.py:55
+msgid "How much money do you make yearly? (If unknown, provide an estimate)"
+msgstr ""
+
+#: pages/questions.py:58
+msgid "Are you pursuing Higher Education?"
+msgstr ""
+
+#: pages/questions.py:58
+msgid "Yes"
+msgstr ""
+
+#: pages/questions.py:58
+msgid "No"
+msgstr ""
+
+#: pages/questions.py:61
+msgid "Next"
+msgstr ""
