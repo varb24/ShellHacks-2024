@@ -7,7 +7,6 @@ _ = lang_setup()
 from pages.helpers.results_prompt import create_recommendations
 
 question_answers = {}
-st.title("AI questions")
 st.header("Here are some more questions to narrow your search")
 # Check if AI_questions exist in session state
 if 'AI_questions' in st.session_state:
@@ -22,6 +21,7 @@ if 'AI_questions' in st.session_state:
     st.session_state['final_answers'] = st.session_state['profile'] | question_answers
     print(st.session_state['final_answers'])
 
-if st.button("Next"):
-    st.session_state['final_recs'] = create_recommendations(st.session_state["final_answers"])
-    st.switch_page("pages/results.py")
+with st.spinner("Loading Final Results..."):
+    if st.button("Next"):
+        st.session_state['final_recs'] = create_recommendations(st.session_state["final_answers"])
+        st.switch_page("pages/results.py")
